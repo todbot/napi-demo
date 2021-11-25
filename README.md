@@ -15,11 +15,11 @@ simple Universal (fat) binary compilation and linking.
 $ arch
 arm64
 
-# install arm version of node
+# install arm version of node, using 17.1.0
 $ nvm install 17.1.0
 
-# install x86_64 version of node 
-$ arch -x86_64 /bin/bash -c "source $HOME/.nvm/nvm.sh; nvm install v17.0.1"
+# install x86_64 version of node, using 17.0.1
+$ arch -x86_64 /bin/bash -c "source $HOME/.nvm/nvm.sh; nvm install 17.0.1"
 
 # Change back to arm64 node
 $ nvm use 17.1.0
@@ -32,26 +32,12 @@ $ npm run test
 $ npm run prebuild-darwin
 $ rm -rf build
 
-# Try out suppposed arm64 prebuild
+# Try out arm64 prebuild
+$ npm use 17.1.0
 $ npm run test
-Error: dlopen(
-[...]
-(mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64e')), '/usr/local/lib/node.napi.node' (no such file), '/usr/lib/node.napi.node' (no such file)
-    at Object.Module._extensions..node (node:internal/modules/cjs/loader:1179:18)
-    at Module.load (node:internal/modules/cjs/loader:975:32)
-    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
-    at Module.require (node:internal/modules/cjs/loader:999:19)
-    at require (node:internal/modules/cjs/helpers:102:18)
-    at load (/Users/tod/projects/node/napi-demo/node_modules/node-gyp-build/index.js:21:10)
-    at Object.<anonymous> (/Users/tod/projects/node/napi-demo/hello.js:4:40)
-    at Module._compile (node:internal/modules/cjs/loader:1097:14)
-    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
-    at Module.load (node:internal/modules/cjs/loader:975:32) {
-  code: 'ERR_DLOPEN_FAILED'
-}
 
 # Try out x86_64 node, which succeeds
-nvm use v17.0.1
+nvm use 17.0.1
 npm run test
 
 # Here's what the 'prebuilds' dir has:
