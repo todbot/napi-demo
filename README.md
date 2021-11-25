@@ -18,17 +18,17 @@ arm64
 # install arm version of node
 $ nvm install 17.1.0
 
-# install x86 version of node 
+# install x86_64 version of node 
 $ arch -x86_64 /bin/bash -c "source $HOME/.nvm/nvm.sh; nvm install v17.0.1"
 
-# Change back to arm ndoe
+# Change back to arm64 node
 $ nvm use 17.1.0
 
 # Install our project, verify it works
 $ npm install
 $ npm run test
 
-# Mdke prebuilds, remove temp build dir
+# Make prebuilds and remove temp build dir
 $ npm run prebuild-darwin
 $ rm -rf build
 
@@ -50,11 +50,19 @@ Error: dlopen(
   code: 'ERR_DLOPEN_FAILED'
 }
 
-# Try out x86_64 node
+# Try out x86_64 node, which succeeds
 nvm use v17.0.1
 npm run test
 
-# the above succeeeds
+# Here's what the 'prebuilds' dir has:
+$ ls -R prebuilds
+darwin-x64+arm64/
+prebuilds/darwin-x64+arm64:
+node.napi.node*
+
+$ file prebuilds/darwin-x64+arm64/node.napi.node
+prebuilds/darwin-x64+arm64/node.napi.node: Mach-O 64-bit bundle x86_64
+
 ```
 
 
