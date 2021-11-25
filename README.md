@@ -36,19 +36,15 @@ $ rm -rf build
 $ npm use 17.1.0
 $ npm run test
 
-# Try out x86_64 node, which succeeds
+# Try out x86_64 node
 nvm use 17.0.1
 npm run test
 
-# Here's what the 'prebuilds' dir has:
-$ ls -R prebuilds
-darwin-x64+arm64/
-prebuilds/darwin-x64+arm64:
-node.napi.node*
 
-$ file prebuilds/darwin-x64+arm64/node.napi.node
-prebuilds/darwin-x64+arm64/node.napi.node: Mach-O 64-bit bundle x86_64
+# prebuild dir has universal binary (from 'build' dir)
+$  file prebuilds/darwin-x64+arm64/node.napi.node
+prebuilds/darwin-x64+arm64/node.napi.node: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit bundle x86_64] [arm64:Mach-O 64-bit bundle arm64]
+prebuilds/darwin-x64+arm64/node.napi.node (for architecture x86_64):	Mach-O 64-bit bundle x86_64
+prebuilds/darwin-x64+arm64/node.napi.node (for architecture arm64):	Mach-O 64-bit bundle arm64
 
 ```
-
-
